@@ -3,7 +3,7 @@ const initialPhrases = [
     "Reference to Wyoming", "Skipping Someone on Communion", "Talks Too Much About Epistle", "Service Starts Late", "Promotes Bible Study",
     "Reference to Parenting in Sermon", "30 Minute Plus Sermon", "Calls For Volunteers", "Pastor Goes out of Order From Bulitin", "Pastor Talks About His Family", "Pastor Talks About His Hobbies", "Pastor Talks About His Pets",
     "Acolyte Struggles", "Late Arrival Distraction", "Coffee Hour Mention", "Offertory Delay", "Kid Runs Off During Children's Message",
-    "Organ Volume Surge", "Cell Phone Going Off", "Coughing Fit Symphony", "Full Moon Observed", "Pastor Overtime Warning","Pastor Mentions Last Parishes"
+    "Organ Volume Surge", "Cell Phone Going Off", "Coughing Fit Symphony", "Full Moon Observed", "No Foul No Flag","Pastor Mentions Last Parishes"
 ];
 
 const gridElement = document.getElementById("grid");
