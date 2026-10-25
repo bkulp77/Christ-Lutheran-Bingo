@@ -12,18 +12,20 @@ document.addEventListener('DOMContentLoaded', () => {
         "Promotes Bible Study",
         "Cell Phone Goes Off",
         "Reference to Wyoming",
-        "Mic Feedback",
-        "Technical Glitch",
+        "30+ Minute Sermon",
+        "Full Moon Observation",
         "Call for Volunteers",
         "Coughing Fit in Pews",
-        "Hymn Accompaniment Mistake",
+        "No Foul, No Flag",
         "Infant Crying",
         "Shuffling Bulletins",
         "Late Arrival Walks to Front",
         "Standard Liturgy Stumble",
         "Peace Be With You",
         "Reference to Fort Worth",
-        "Organ Postlude Applause"
+        "Kid Wandering From Children's Chat"
+
+    
     ];
 
     const grid = document.getElementById('bingo-grid');
