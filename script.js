@@ -1,53 +1,69 @@
-const initialPhrases = [
-    "Driving on 820", "Bad Dad Jokes", "Operator Error on Clicker", "20 Min Sermon", "25 Min Sermon",
-    "Reference to Wyoming", "Skipping Someone on Communion", "Talks Too Much About Epistle", "Service Starts Late", "Promotes Bible Study",
-    "Reference to Parenting in Sermon", "30 Minute Plus Sermon", "Calls For Volunteers", "Pastor Goes out of Order From Bulitin", "Pastor Talks About His Family", "Pastor Talks About His Hobbies", "Pastor Talks About His Pets",
-    "Acolyte Struggles", "Late Arrival Distraction", "Coffee Hour Mention", "Offertory Delay", "Kid Runs Off During Children's Message",
-    "Organ Volume Surge", "Cell Phone Going Off", "Coughing Fit Symphony", "Full Moon Observed", "No Foul No Flag","Pastor Mentions Last Parishes"
-];
+document.addEventListener('DOMContentLoaded', () => {
+    const prompts = [
+        "Driving on 820",
+        "Bad Dad Joke",
+        "Clicker Not Working",
+        "20-Minute Sermon",
+        "25-Minute Sermon",
+        "Skipping Someone on Communion",
+        "Epistle Reading Rant",
+        "Talk Too Much About Reading",
+        "Service Starts Late",
+        "Promotes Bible Study",
+        "Cell Phone Goes Off",
+        "Reference to Wyoming",
+        "Mic Feedback",
+        "Technical Glitch",
+        "Call for Volunteers",
+        "Coughing Fit in Pews",
+        "Hymn Accompaniment Mistake",
+        "Infant Crying",
+        "Shuffling Bulletins",
+        "Late Arrival Walks to Front",
+        "Standard Liturgy Stumble",
+        "Peace Be With You",
+        "Reference to Fort Worth",
+        "Organ Postlude Applause"
+    ];
 
-const gridElement = document.getElementById("grid");
-const shuffleBtn = document.getElementById("shuffle-btn");
-const resetBtn = document.getElementById("reset-btn");
+    const grid = document.getElementById('bingo-grid');
+    const resetBtn = document.getElementById('reset-btn');
 
-let currentItems = [...initialPhrases];
-
-function initBoard(shuffle = false) {
-    gridElement.innerHTML = "";
-    
-    if (shuffle) {
-        // Fisher-Yates Shuffle Algorithm
-        for (let i = currentItems.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [currentItems[i], currentItems[j]] = [currentItems[j], currentItems[i]];
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
+        while (currentIndex !== 0) {
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+            [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
         }
-    } else {
-        currentItems = [...initialPhrases];
+        return array;
     }
 
-    // Build grid indices mapping around a 5x5 layout matrix
-    let phraseIndex = 0;
-    for (let i = 0; i < 25; i++) {
-        const cell = document.createElement("div");
-        cell.classList.add("cell");
+    function generateBoard() {
+        grid.innerHTML = '';
+        const shuffledPrompts = shuffle([...prompts]);
+        let promptIndex = 0;
 
-        if (i === 12) {
-            cell.textContent = "FREE SPACE";
-            cell.classList.add("free-space", "selected");
-        } else {
-            cell.textContent = currentItems[phraseIndex];
-            phraseIndex++;
-            
-            cell.addEventListener("click", () => {
-                cell.classList.toggle("selected");
+        for (let i = 0; i < 25; i++) {
+            const cell = document.createElement('div');
+            cell.classList.add('bingo-cell');
+
+            if (i === 12) {
+                cell.textContent = "FREE SPACE";
+                cell.classList.add('free-space');
+            } else {
+                cell.textContent = shuffledPrompts[promptIndex];
+                promptIndex++;
+            }
+
+            cell.addEventListener('click', () => {
+                cell.classList.toggle('selected');
             });
+
+            grid.appendChild(cell);
         }
-        gridElement.appendChild(cell);
     }
-}
 
-shuffleBtn.addEventListener("click", () => initBoard(true));
-resetBtn.addEventListener("click", () => initBoard(false));
-
-// Initialize template card on startup configuration
-initBoard(false);
+    resetBtn.addEventListener('click', generateBoard);
+    generateBoard();
+});

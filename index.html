@@ -2,40 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Christ Lutheran Church - Service Bingo</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Christ Lutheran Church Service Bingo</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo-container">
-                <!-- Stained glass cross emblem fallback using CSS shapes -->
-                <div class="church-logo">
-                    <div class="cross"></div>
-                </div>
-            </div>
+    <div class="mobile-container">
+        <header class="church-header">
+            <div class="logo-placeholder">⛪</div>
             <h1>Christ Lutheran Church</h1>
-            <p class="subtitle">Missouri Synod — Fort Worth, Texas</p>
+            <p>Service Bingo</p>
         </header>
-
-        <div class="controls">
-            <button id="shuffle-btn">Shuffle Board</button>
-            <button id="reset-btn">Reset Card</button>
-        </div>
-
-        <div class="bingo-board">
-            <div class="bingo-headers">
-                <div class="header-cell">B</div>
-                <div class="header-cell">I</div>
-                <div class="header-cell">N</div>
-                <div class="header-cell">G</div>
-                <div class="header-cell">O</div>
-            </div>
-            <div id="grid" class="bingo-grid"></div>
-        </div>
+        
+        <main class="bingo-wrapper">
+            <div id="bingo-grid" class="bingo-grid"></div>
+        </main>
+        
+        <footer class="controls">
+            <button id="reset-btn">Reshuffle Card</button>
+        </footer>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
