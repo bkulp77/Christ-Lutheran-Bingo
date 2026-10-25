@@ -1,0 +1,194 @@
+:root {
+    --primary-blue: #0056b3;
+    --accent-blue: #e6f0fa;
+    --dark-text: #2c3e50;
+    --selected-bg: #87cefa;
+    --selected-text: #003366;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f8f9fa;
+    color: var(--dark-text);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    max-width: 650px;
+    width: 100%;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+header h1 {
+    color: var(--primary-blue);
+    margin: 10px 0 5px 0;
+    font-size: 1.8rem;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Fallback Decorative Logo Layout */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.church-logo {
+    width: 60px;
+    height: 60px;
+    border: 2px dashed var(--primary-blue);
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.church-logo::before {
+    content: '';
+    position: absolute;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(0, 86, 179, 0.3);
+    border-radius: 50%;
+}
+
+.cross {
+    background: var(--primary-blue);
+    height: 34px;
+    width: 6px;
+    position: relative;
+    border-radius: 2px;
+}
+
+.cross::after {
+    content: '';
+    background: var(--primary-blue);
+    height: 6px;
+    width: 22px;
+    position: absolute;
+    top: 8px;
+    left: -8px;
+    border-radius: 2px;
+}
+
+.controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+button {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background-color: #004085;
+}
+
+#reset-btn {
+    background-color: #6c757d;
+}
+
+#reset-btn:hover {
+    background-color: #5a6268;
+}
+
+.bingo-board {
+    border: 3px solid var(--primary-blue);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.bingo-headers {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    background-color: var(--primary-blue);
+    color: white;
+    font-weight: bold;
+    font-size: 1.4rem;
+}
+
+.header-cell {
+    padding: 12px 0;
+}
+
+.bingo-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: 1fr;
+    background-color: var(--primary-blue);
+    gap: 2px;
+}
+
+/* Creates perfectly square layout blocks aspect ratio */
+.bingo-grid::before {
+    content: '';
+    width: 0;
+    padding-bottom: 100%;
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+}
+
+.bingo-grid > *:first-child {
+    grid-row: 1 / 1;
+    grid-column: 1 / 1;
+}
+
+.cell {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 500;
+    padding: 8px;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.2s;
+    line-height: 1.2;
+}
+
+.cell:hover {
+    background-color: var(--accent-blue);
+}
+
+.cell.selected {
+    background-color: var(--selected-bg);
+    color: var(--selected-text);
+    font-weight: bold;
+}
+
+.cell.free-space {
+    background-color: #f0f4f8;
+    color: var(--primary-blue);
+    font-weight: bold;
+}
+
+.cell.free-space.selected {
+    background-color: var(--selected-bg);
+    color: var(--selected-text);
+}
