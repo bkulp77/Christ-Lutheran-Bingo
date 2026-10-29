@@ -21,7 +21,7 @@ body {
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
@@ -114,6 +114,53 @@ body {
     background-color: #1982c4;
     border-color: #0b69a3;
     color: #ffffff;
+}
+
+.card-timestamp {
+    text-align: center;
+    font-size: 12px;
+    color: #627d98;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.winners-section {
+    padding: 12px 16px 20px;
+    background: #f0f4f8;
+    border-top: 1px solid #bcccdc;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.winners-section h2 {
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #0b69a3;
+}
+
+#winners-list {
+    list-style: none;
+    font-size: 13px;
+}
+
+#winners-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid #d9e2ec;
+    display: flex;
+    justify-content: space-between;
+}
+
+#claim-bingo-btn {
+    background-color: #1982c4;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 80%;
+    max-width: 250px;
 }
 
 .controls {

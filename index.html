@@ -15,12 +15,23 @@
         </header>
         
         <main class="bingo-wrapper">
+            <div id="card-timestamp" class="card-timestamp"></div>
             <div id="bingo-grid" class="bingo-grid"></div>
         </main>
         
         <footer class="controls">
             <button id="reset-btn">Reshuffle Card</button>
+            <div id="claim-area" style="display:none; margin-top:10px;">
+                <input type="text" id="winner-name" placeholder="Your name" style="padding:8px 12px; border-radius:6px; border:1px solid #bcccdc; margin-bottom:6px; width:70%; max-width:220px;">
+                <br>
+                <button id="claim-bingo-btn" style="background:#1982c4;">Claim Bingo</button>
+            </div>
         </footer>
+
+        <section id="winners-section" class="winners-section">
+            <h2>Winners</h2>
+            <ul id="winners-list"></ul>
+        </section>
     </div>
     <script src="script.js"></script>
 </body>
