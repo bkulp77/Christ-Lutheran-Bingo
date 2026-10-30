@@ -34,6 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const nameInput = document.getElementById('winner-name');
     const timestampEl = document.getElementById('card-timestamp');
     const winnersList = document.getElementById('winners-list');
+    const winOverlay = document.getElementById('win-overlay');
+    const ackWinBtn = document.getElementById('ack-win-btn');
     let hasWon = false;
     let cardGeneratedAt = null;
 
@@ -172,13 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hasWon = true;
         claimArea.style.display = 'block';
         nameInput.value = '';
-        nameInput.focus();
-        const msg = "🎉 Congratulations! You won a free copy of Portals of Prayer! 🎉";
-        // Show on page in case alert is blocked
-        timestampEl.textContent = msg;
-        timestampEl.style.color = '#0b69a3';
-        timestampEl.style.fontWeight = '700';
-        setTimeout(() => alert(msg + "\nEnter your name below and tap Claim Bingo."), 150);
+        winOverlay.style.display = 'flex';
     }
 
     function generateBoard() {
@@ -216,6 +212,11 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.appendChild(cell);
         }
     }
+
+    ackWinBtn.addEventListener('click', () => {
+        winOverlay.style.display = 'none';
+        nameInput.focus();
+    });
 
     claimBtn.addEventListener('click', () => {
         if (!hasWon) return;
