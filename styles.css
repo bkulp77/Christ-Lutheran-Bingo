@@ -262,3 +262,22 @@ body {
     0% { transform: translateY(-40px); opacity: 1; }
     100% { transform: translateY(300px); opacity: 0; }
 }
+
+.chiefs-fan {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.chiefs-fan .helmet { font-size: 48px; filter: hue-rotate(-10deg); }
+.chiefs-fan .face { font-size: 42px; margin-top: -8px; }
+.chiefs-fan .jersey {
+  background: #E31837;
+  color: #FFB81C;
+  font-weight: 900;
+  font-size: 14px;
+  padding: 4px 12px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+  margin-top: 4px;
+}
