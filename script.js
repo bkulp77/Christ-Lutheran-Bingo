@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const prompts = [
         "Driving on 820",
         "Bad Dad Joke",
-        "Clicker Not Working",
+        "Operator Error on Clicker",
         "20-Minute Sermon",
         "25-Minute Sermon",
         "Skipping Someone on Communion",
@@ -14,15 +14,18 @@ document.addEventListener('DOMContentLoaded', () => {
         "Reference to Wyoming",
         "30+ Minute Sermon",
         "Full Moon Observation",
+        "Ministry Minute",
+        "Hot Rod Reference",
         "Call for Volunteers",
         "Coughing Fit in Pews",
-        "No Foul, No Flag",
+        "No Flag, No Foul",
         "Infant Crying",
         "Shuffling Bulletins",
-        "Late Arrival Walks to Front",
+        "Late Arrival Gets Seated",
         "Standard Liturgy Stumble",
         "Peace Be With You",
-        "Reference to Fort Worth",
+        "15 minute Sermon",
+        "Deviation From Bulletin",
         "Kid Wandering From Children's Chat"
 
     
