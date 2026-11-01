@@ -15,26 +15,26 @@
             <div class="logo-placeholder">✝️</div>
             <h1>Christ Lutheran Church</h1>
             <p class="tagline">Service Bingo</p>
-            <p class="subtitle">Spot the Spirit… and the occasional slip-up!</p>
+            <p class="subtitle">Where the liturgy is sacred… and the slip-ups are legendary.</p>
         </header>
         
         <main class="bingo-wrapper">
             <div id="card-timestamp" class="card-timestamp"></div>
+            <div id="fun-note" class="fun-note"></div>
             <div id="bingo-grid" class="bingo-grid"></div>
         </main>
         
         <footer class="controls">
-            <button id="reset-btn">Reshuffle Card</button>
-            <div id="claim-area" style="display:none; margin-top:12px;">
-                <input type="text" id="winner-name" placeholder="Your name (so we can celebrate you!)" style="padding:10px 14px; border-radius:8px; border:2px solid #bcccdc; margin-bottom:8px; width:80%; max-width:260px; font-size:15px;">
-                <br>
-                <button id="claim-bingo-btn">Claim Your Bingo!</button>
+            <button id="reset-btn">Deal a New Card</button>
+            <div id="claim-area" class="claim-area" style="display:none;">
+                <input type="text" id="winner-name" placeholder="Your name (for the Book of Life… and the winners list)">
+                <button id="claim-bingo-btn">Claim Your Bingo</button>
             </div>
         </footer>
 
         <section id="winners-section" class="winners-section">
-            <h2>Today's Winners 🏆</h2>
-            <p class="winners-note">(Only winners on this phone are shown — the rest are still hunting!)</p>
+            <h2>Today’s Saints of the Service 🏆</h2>
+            <p class="winners-note">Only winners on this phone appear. Everyone else is still waiting for the next cough or late arrival.</p>
             <ul id="winners-list"></ul>
         </section>
     </div>
@@ -47,9 +47,9 @@
                 <div class="celeb">🙏</div>
                 <div class="celeb">✨</div>
             </div>
-            <h2>🎉 BINGO! 🎉</h2>
-            <p>Congratulations! You won a free copy of<br><strong>Portals of Prayer</strong>.<br><small>Supplies limited, no rainchecks… but plenty of grace!</small></p>
-            <button id="ack-win-btn">Amen! 🙌</button>
+            <h2>BINGO!</h2>
+            <p>You did it! A free copy of<br><strong>Portals of Prayer</strong> is yours.<br><small>Supplies limited. No rainchecks. Unlimited grace.</small></p>
+            <button id="ack-win-btn">Amen & Thank You</button>
         </div>
     </div>
     <script src="script.js"></script>

@@ -29,12 +29,24 @@ document.addEventListener('DOMContentLoaded', () => {
         "Kid Wandering From Children's Chat"
     ];
 
+    const funNotes = [
+        "May your marks be true and your coughs be few.",
+        "The free space is free. Everything else costs attention.",
+        "If the sermon hits 30 minutes, you already won in spirit.",
+        "Wyoming references are rare. Treasure them.",
+        "Peace be with you… and with whoever’s phone just went off.",
+        "Today’s card: shuffled by chance, judged by grace.",
+        "Late arrivals get a seat. Early bingo gets the glory.",
+        "A bad dad joke is a feature, not a bug."
+    ];
+
     const grid = document.getElementById('bingo-grid');
     const resetBtn = document.getElementById('reset-btn');
     const claimBtn = document.getElementById('claim-bingo-btn');
     const claimArea = document.getElementById('claim-area');
     const nameInput = document.getElementById('winner-name');
     const timestampEl = document.getElementById('card-timestamp');
+    const funNoteEl = document.getElementById('fun-note');
     const winnersList = document.getElementById('winners-list');
     const winOverlay = document.getElementById('win-overlay');
     const ackWinBtn = document.getElementById('ack-win-btn');
@@ -67,14 +79,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderWinners() {
         const winners = loadWinners();
         if (!winners.length) {
-            winnersList.innerHTML = '<li style="color:#627d98; font-style:italic;">No winners yet — the pews are still hunting! 🔍</li>';
+            winnersList.innerHTML = '<li style="color:#5a6f85; font-style:italic;">No winners yet. The pews remain undefeated.</li>';
             return;
         }
         winnersList.innerHTML = winners.map((w, idx) => `
             <li>
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <span><strong>${escapeHtml(w.name)}</strong></span>
-                    <span style="color:#627d98; font-size:12px;">${w.time}</span>
+                    <span style="color:#5a6f85; font-size:12px;">${w.time}</span>
                 </div>
                 <button class="view-card-btn" data-idx="${idx}">View Card</button>
                 <div class="winner-card" id="winner-card-${idx}" style="display:none; margin-top:8px;"></div>
@@ -101,9 +113,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!board || board.length !== 25) return '<em>No card data</em>';
         const cells = board.map(c => `
             <div style="
-                background:${c.selected ? 'linear-gradient(145deg, #1982c4, #0b69a3)' : 'linear-gradient(145deg, #ffffff, #f0f4f8)'};
-                color:${c.selected ? '#fff' : '#102a43'};
-                border:1px solid ${c.selected ? '#0a5a8a' : '#d9e2ec'};
+                background:${c.selected ? 'linear-gradient(145deg, #1a7ab8, #0a4d7a)' : 'linear-gradient(145deg, #ffffff, #f4f7fb)'};
+                color:${c.selected ? '#fff' : '#1a2a3a'};
+                border:1px solid ${c.selected ? '#083d61' : '#e1e8f0'};
                 border-radius:4px;
                 font-size:7px;
                 padding:3px 1px;
@@ -114,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 font-weight:600;
             ">${escapeHtml(c.text)}</div>
         `).join('');
-        return `<div style="display:grid; grid-template-columns:repeat(5,1fr); gap:3px; width:100%; aspect-ratio:1; padding:4px; background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">${cells}</div>`;
+        return `<div style="display:grid; grid-template-columns:repeat(5,1fr); gap:3px; width:100%; aspect-ratio:1; padding:6px; background:#fff; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.08);">${cells}</div>`;
     }
 
     function escapeHtml(str) {
@@ -177,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function triggerWin() {
         hasWon = true;
-        claimArea.style.display = 'block';
+        claimArea.style.display = 'flex';
         nameInput.value = '';
         winOverlay.style.display = 'flex';
     }
@@ -188,8 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
         claimArea.style.display = 'none';
         cardGeneratedAt = new Date();
         timestampEl.textContent = 'Card generated: ' + formatTime(cardGeneratedAt);
-        timestampEl.style.color = '';
-        timestampEl.style.fontWeight = '';
+
+        // Random fun note
+        funNoteEl.textContent = funNotes[Math.floor(Math.random() * funNotes.length)];
 
         const shuffledPrompts = shuffle([...prompts]);
         let promptIndex = 0;
@@ -227,7 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!hasWon) return;
         const name = nameInput.value.trim();
         if (!name) {
-            alert('Please enter your name so we can put you on the board!');
+            alert('A name is required. Even the free space has one.');
             nameInput.focus();
             return;
         }
@@ -246,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveWinners(winners);
         renderWinners();
         claimArea.style.display = 'none';
-        alert('Recorded! Card was generated at ' + formatTime(cardGeneratedAt) + '. May the next service be equally eventful!');
+        alert('Recorded. Card generated at ' + formatTime(cardGeneratedAt) + '. May the next service be equally eventful.');
     });
 
     resetBtn.addEventListener('click', generateBoard);
