@@ -27,10 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
         "15 minute Sermon",
         "Deviation From Bulletin",
         "Kid Wandering From Children's Chat"
-
-    
     ];
- const grid = document.getElementById('bingo-grid');
+
+    const grid = document.getElementById('bingo-grid');
     const resetBtn = document.getElementById('reset-btn');
     const claimBtn = document.getElementById('claim-bingo-btn');
     const claimArea = document.getElementById('claim-area');
@@ -68,17 +67,17 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderWinners() {
         const winners = loadWinners();
         if (!winners.length) {
-            winnersList.innerHTML = '<li style="color:#627d98;">No winners yet</li>';
+            winnersList.innerHTML = '<li style="color:#627d98; font-style:italic;">No winners yet — the pews are still hunting! 🔍</li>';
             return;
         }
         winnersList.innerHTML = winners.map((w, idx) => `
-            <li style="flex-direction:column; align-items:stretch;">
-                <div style="display:flex; justify-content:space-between;">
+            <li>
+                <div style="display:flex; justify-content:space-between; align-items:center;">
                     <span><strong>${escapeHtml(w.name)}</strong></span>
-                    <span>${w.time}</span>
+                    <span style="color:#627d98; font-size:12px;">${w.time}</span>
                 </div>
-                <button class="view-card-btn" data-idx="${idx}" style="margin-top:4px; font-size:12px; padding:4px 8px; background:#0b69a3; color:#fff; border:none; border-radius:4px; cursor:pointer;">View Card</button>
-                <div class="winner-card" id="winner-card-${idx}" style="display:none; margin-top:6px;"></div>
+                <button class="view-card-btn" data-idx="${idx}">View Card</button>
+                <div class="winner-card" id="winner-card-${idx}" style="display:none; margin-top:8px;"></div>
             </li>
         `).join('');
 
@@ -102,23 +101,31 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!board || board.length !== 25) return '<em>No card data</em>';
         const cells = board.map(c => `
             <div style="
-                background:${c.selected ? '#1982c4' : '#f0f4f8'};
+                background:${c.selected ? 'linear-gradient(145deg, #1982c4, #0b69a3)' : 'linear-gradient(145deg, #ffffff, #f0f4f8)'};
                 color:${c.selected ? '#fff' : '#102a43'};
-                border:1px solid #bcccdc;
-                border-radius:3px;
+                border:1px solid ${c.selected ? '#0a5a8a' : '#d9e2ec'};
+                border-radius:4px;
                 font-size:7px;
-                padding:2px;
+                padding:3px 1px;
                 text-align:center;
                 line-height:1.1;
                 word-break:break-word;
                 overflow:hidden;
+                font-weight:600;
             ">${escapeHtml(c.text)}</div>
         `).join('');
-        return `<div style="display:grid; grid-template-columns:repeat(5,1fr); gap:2px; width:100%; aspect-ratio:1;">${cells}</div>`;
+        return `<div style="display:grid; grid-template-columns:repeat(5,1fr); gap:3px; width:100%; aspect-ratio:1; padding:4px; background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">${cells}</div>`;
     }
+
     function escapeHtml(str) {
-        return String(str).replace(/[&<>"']/g, c => ({'&':'&','<':'<','>':'>','"':'"',"'":'&#39;'}[c]));
+        return String(str)
+            .replace(/&/g, '&')
+            .replace(/</g, '<')
+            .replace(/>/g, '>')
+            .replace(/"/g, '"')
+            .replace(/'/g, '&#39;');
     }
+
     function formatTime(date) {
         return date.toLocaleString(undefined, { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' });
     }
@@ -139,12 +146,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const cells = Array.from(document.querySelectorAll('.bingo-cell'));
         const matrix = [];
         
-        // Split flat array of 25 cells into 5 rows of 5
         for (let i = 0; i < 5; i++) {
             matrix.push(cells.slice(i * 5, i * 5 + 5));
         }
 
-        // 1. Check Rows
         for (let r = 0; r < 5; r++) {
             if (matrix[r].every(cell => cell.classList.contains('selected'))) {
                 triggerWin();
@@ -152,7 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 2. Check Columns
         for (let c = 0; c < 5; c++) {
             if (matrix.every(row => row[c].classList.contains('selected'))) {
                 triggerWin();
@@ -160,13 +164,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // 3. Check Diagonal (Top-Left to Bottom-Right)
         if (matrix.every((row, i) => row[i].classList.contains('selected'))) {
             triggerWin();
             return;
         }
 
-        // 4. Check Anti-Diagonal (Top-Right to Bottom-Left)
         if (matrix.every((row, i) => row[4 - i].classList.contains('selected'))) {
             triggerWin();
             return;
@@ -225,7 +227,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!hasWon) return;
         const name = nameInput.value.trim();
         if (!name) {
-            alert('Please enter your name.');
+            alert('Please enter your name so we can put you on the board!');
             nameInput.focus();
             return;
         }
@@ -244,7 +246,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveWinners(winners);
         renderWinners();
         claimArea.style.display = 'none';
-        alert('Recorded! Card was generated at ' + formatTime(cardGeneratedAt));
+        alert('Recorded! Card was generated at ' + formatTime(cardGeneratedAt) + '. May the next service be equally eventful!');
     });
 
     resetBtn.addEventListener('click', generateBoard);
