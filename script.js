@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Peace Be With You",
         "15 minute Sermon",
         "Deviation From Bulletin",
+        "Hunting or fishing reference",
         "Kid Wandering From Children's Chat"
     ];
 
